@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jack Dorsey | Digital Visionary</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:'Inter', sans-serif;
+    background: radial-gradient(circle at top,#111827,#0f172a 60%);
+    color:#f1f5f9;
+    line-height:1.7;
+    overflow-x:hidden;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:60px 25px;
+}
+
+.top-bar{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-bottom:50px;
+    flex-wrap:wrap;
+}
+
+button, .download-btn{
+    padding:12px 24px;
+    border-radius:30px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all .3s ease;
+    border:1px solid rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+}
+
+button{
+    background:rgba(255,255,255,0.05);
+    color:white;
+}
+
+button:hover{
+    background:#1da1f2;
+    border-color:#1da1f2;
+    transform:translateY(-2px);
+}
+
+.download-btn{
+    background:linear-gradient(135deg,#10b981,#059669);
+    color:white;
+    text-decoration:none;
+    border:none;
+}
+
+.download-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(16,185,129,0.4);
+}
+
+.card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    padding:60px;
+    border-radius:25px;
+    backdrop-filter:blur(20px);
+    box-shadow:0 30px 60px rgba(0,0,0,0.5);
+    animation:fadeIn 1s ease forwards;
+}
+
+.profile{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.profile img{
+    width:180px;
+    border-radius:50%;
+    margin-bottom:25px;
+    border:3px solid rgba(255,255,255,0.1);
+    box-shadow:0 20px 40px rgba(0,0,0,0.6);
+    transition:.4s ease;
+}
+
+.profile img:hover{
+    transform:scale(1.05);
+}
+
+h1{
+    font-size:2.4rem;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+h3{
+    font-weight:400;
+    opacity:0.8;
+    margin-top:10px;
+    margin-bottom:40px;
+}
+
+p{
+    margin-bottom:22px;
+    font-size:1.05rem;
+    color:#e2e8f0;
+}
+
+.quote{
+    margin-top:50px;
+    font-style:italic;
+    font-size:1.2rem;
+    text-align:center;
+    opacity:0.85;
+    border-top:1px solid rgba(255,255,255,0.1);
+    padding-top:30px;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+@media(max-width:768px){
+    .card{
+        padding:35px;
+    }
+}
+
+@media(max-width:500px){
+    .profile img{
+        width:140px;
+    }
+    h1{
+        font-size:1.8rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="top-bar">
+        <button id="langBtn" onclick="toggleLanguage()">English</button>
+        <a href="jack_dorsey.pdf" class="download-btn" download>
+            Download Document
+        </a>
+    </div>
+
+    <div class="card">
+
+        <div class="profile">
+            <img src="Jack_Dorsey.png.webp" alt="Jack Dorsey">
+            <h1>JACK DORSEY</h1>
+            <h3 id="subtitle"></h3>
+        </div>
+
+        <div id="content"></div>
+
+        <div class="quote" id="quote"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+let currentLanguage = "es";
+
+const spanishContent = `
+<p>Jack Dorsey es una de las figuras más influyentes en la transformación tecnológica del siglo XXI. Su impacto no se limita a la creación de empresas exitosas; su legado está ligado a la redefinición de cómo las sociedades modernas se comunican y gestionan el dinero.</p>
+
+<p>Como cofundador de Twitter en 2006, impulsó una idea simple pero revolucionaria: permitir que cualquier persona compartiera mensajes cortos en tiempo real con una audiencia global.</p>
+
+<p>Este modelo transformó el periodismo y aceleró la difusión de información en la política, los negocios y la cultura contemporánea.</p>
+
+<p>En 2009 fundó Square —hoy Block— con el objetivo de democratizar el acceso a servicios financieros.</p>
+
+<p>Su respaldo a Bitcoin refleja su visión de sistemas más abiertos, transparentes y descentralizados.</p>
+
+<p>Jack Dorsey ayudó a redefinir la arquitectura social y económica de la era digital.</p>
+`;
+
+const englishContent = `
+<p>Jack Dorsey stands as one of the most influential technological figures of the 21st century. His legacy is tied to reshaping how societies communicate and manage financial systems.</p>
+
+<p>As co-founder of Twitter in 2006, he advanced a simple yet transformative idea: anyone could publish short, real-time messages to a global audience.</p>
+
+<p>This model reshaped journalism and global political and corporate dynamics.</p>
+
+<p>In 2009, he founded Square — now Block — to democratize access to financial services.</p>
+
+<p>His advocacy for Bitcoin reflects his belief in open and decentralized systems.</p>
+
+<p>Dorsey helped redefine the social and economic structure of the digital age.</p>
+`;
+
+function loadSpanish(){
+    document.getElementById("subtitle").innerText =
+        "Arquitecto de la Comunicación Digital y la Descentralización Financiera";
+    document.getElementById("content").innerHTML = spanishContent;
+    document.getElementById("quote").innerText =
+        "“La tecnología no solo conecta personas; redistribuye poder.”";
+    document.getElementById("langBtn").innerText = "English";
+    document.querySelector(".download-btn").innerText = "Descargar Documento";
+    currentLanguage = "es";
+}
+
+function loadEnglish(){
+    document.getElementById("subtitle").innerText =
+        "Architect of Real-Time Communication and Financial Decentralization";
+    document.getElementById("content").innerHTML = englishContent;
+    document.getElementById("quote").innerText =
+        "“Technology does not merely connect people — it redistributes power.”";
+    document.getElementById("langBtn").innerText = "Español";
+    document.querySelector(".download-btn").innerText = "Download Document";
+    currentLanguage = "en";
+}
+
+function toggleLanguage(){
+    if(currentLanguage === "es"){
+        loadEnglish();
+    } else {
+        loadSpanish();
+    }
+}
+
+loadSpanish();
+
+</script>
+
+</body>
+</html>
